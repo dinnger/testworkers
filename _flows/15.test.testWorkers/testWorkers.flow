@@ -1,0 +1,431 @@
+{
+ "nodes": [
+  {
+   "id": "854e5d84-b5e9-4d9f-80e2-53daffc56843",
+   "ui": {
+    "outputs": [
+     "init"
+    ]
+   },
+   "pos": {
+    "h": 90,
+    "w": 90,
+    "x": 542,
+    "y": 191
+   },
+   "desc": "Nodo que permite iniciar un flujo",
+   "icon": "󱈎",
+   "type": "triggers/init",
+   "color": "#3498DB",
+   "group": "Triggers",
+   "title": "Iniciador",
+   "connect": [
+    {
+     "id": "ef8c54a5-0b96-4b5d-94fe-4d28baf7235e",
+     "input": "input",
+     "output": "init"
+    },
+    {
+     "id": "a9599680-5980-4621-8dbe-2f30a4501ada",
+     "input": "input",
+     "output": "init"
+    }
+   ],
+   "properties": {
+    "schema": {
+     "value": "{\"dato1\": \"string\", \"dato2\": \"number\"}"
+    },
+    "typeExec": {
+     "value": "local"
+    },
+    "valueDefault": {
+     "value": "{\n}"
+    }
+   }
+  },
+  {
+   "id": "ef8c54a5-0b96-4b5d-94fe-4d28baf7235e",
+   "ui": {
+    "inputs": [
+     "input"
+    ],
+    "outputs": [
+     "response",
+     "error"
+    ]
+   },
+   "pos": {
+    "h": 90,
+    "w": 90,
+    "x": 723,
+    "y": 191
+   },
+   "desc": "Call webhook",
+   "icon": "󰘯",
+   "type": "triggers/webhook",
+   "color": "#3498DB",
+   "group": "Triggers",
+   "title": "Webhook",
+   "connect": [
+    {
+     "id": "0354a572-bb00-4297-968c-5669d1cba53f",
+     "input": "input",
+     "output": "response"
+    }
+   ],
+   "isTrigger": true,
+   "properties": {
+    "url": {
+     "value": "\n    <div class=\"grid \" style=\"grid-template-columns: repeat(6, minmax(0, 1fr)); \">\n      <div class=\"col-span-1\"><strong>Desarrollo:</strong></div>\n      <div style=\"grid-column:span 5 / span 1\">http://localhost:3000/horizon/flow_15/test de datos</div>\n      <div style=\"grid-column:span 1 / span 1\"><strong>Producción:</strong></div>\n      <div style=\"grid-column:span 5 / span 5\">( HOST )/test de datos</div>\n    </div>"
+    },
+    "type": {
+     "value": "get"
+    },
+    "timeout": {
+     "value": 50
+    },
+    "endpoint": {
+     "value": "/test de datos"
+    },
+    "security": {
+     "value": "null"
+    },
+    "securityBasicPass": {
+     "value": ""
+    },
+    "securityBasicUser": {
+     "value": ""
+    },
+    "securityJWTSecret": {
+     "value": ""
+    },
+    "securityBearerToken": {
+     "value": ""
+    }
+   }
+  },
+  {
+   "id": "0354a572-bb00-4297-968c-5669d1cba53f",
+   "ui": {
+    "inputs": [
+     "input"
+    ],
+    "outputs": [
+     "response",
+     "error"
+    ]
+   },
+   "pos": {
+    "h": 90,
+    "w": 90,
+    "x": 897,
+    "y": 191
+   },
+   "desc": "Realiza peticiones REST",
+   "icon": "󱌑",
+   "type": "input_output/request",
+   "scope": [
+    "axios"
+   ],
+   "title": "Request",
+   "connect": [
+    {
+     "id": "7a85fab2-fa3d-4124-bac0-a77b6c3902c6",
+     "input": "input",
+     "output": "response"
+    },
+    {
+     "id": "c6aaf5fb-e1f1-423f-b21e-a2abd1dc868c",
+     "input": "input",
+     "output": "response"
+    },
+    {
+     "id": "f74982bf-315c-4c0e-b701-a99bea93645b",
+     "input": "input",
+     "output": "response"
+    }
+   ],
+   "properties": {
+    "url": {
+     "value": "https://dummyjson.com/product"
+    },
+    "body": {
+     "value": "{\n}"
+    },
+    "type": {
+     "value": "get"
+    },
+    "headers": {
+     "value": "{\n}"
+    },
+    "contentType": {
+     "value": "application/json"
+    }
+   }
+  },
+  {
+   "id": "c6aaf5fb-e1f1-423f-b21e-a2abd1dc868c",
+   "ui": {
+    "inputs": [
+     "input"
+    ],
+    "outputs": [
+     "response",
+     "error"
+    ]
+   },
+   "pos": {
+    "h": 90,
+    "w": 90,
+    "x": 1051,
+    "y": 34
+   },
+   "desc": "Permite realizar llamadas a postgres",
+   "icon": "󰆼",
+   "type": "databases/postgres",
+   "color": "#ee7d22",
+   "group": "Base de Datos",
+   "title": "Postgres",
+   "connect": [],
+   "properties": {
+    "query": {
+     "value": ""
+    },
+    "config": {
+     "value": "{\n  \"host\": \"localhost\",\n  \"user\": \"postgres\",\n  \"password\": \"postgres\",\n  \"database\": \"postgres\", \n  \"port\": 5432,\n  \"connectionTimeout\": 30000\n}"
+    }
+   }
+  },
+  {
+   "id": "7a85fab2-fa3d-4124-bac0-a77b6c3902c6",
+   "ui": {
+    "inputs": [
+     "input",
+     "add",
+     "next"
+    ],
+    "outputs": [
+     "response",
+     "finish",
+     "error"
+    ]
+   },
+   "pos": {
+    "h": 90,
+    "w": 90,
+    "x": 1066,
+    "y": 191
+   },
+   "desc": "Procesa elemento a elemento de una lista.",
+   "icon": "󱖈",
+   "type": "processing/iteration",
+   "color": "#F39C12",
+   "group": "Procesamiento",
+   "title": "Iteración",
+   "connect": [
+    {
+     "id": "5b82a1a8-0276-45a3-ac42-85ace7294759",
+     "input": "input",
+     "output": "response"
+    }
+   ],
+   "properties": {
+    "valor": {
+     "value": "{{input.data.products}}"
+    },
+    "isTrigger": {
+     "value": true
+    }
+   }
+  },
+  {
+   "id": "f74982bf-315c-4c0e-b701-a99bea93645b",
+   "ui": {
+    "inputs": [
+     "input"
+    ],
+    "outputs": [
+     "response",
+     "error"
+    ]
+   },
+   "pos": {
+    "h": 90,
+    "w": 90,
+    "x": 1066,
+    "y": 352
+   },
+   "desc": "Devuelve la respuesta de una llamada webhook",
+   "icon": "󰌑",
+   "type": "input_output/response",
+   "title": "Response",
+   "connect": [],
+   "properties": {
+    "header": {
+     "value": "{\n}"
+    },
+    "isFile": {
+     "value": false
+    },
+    "status": {
+     "value": 200
+    },
+    "nameFile": {
+     "value": ""
+    },
+    "response": {
+     "value": "{\n    \"msg\":\"{{input.data.products[2].title}}\"\n}"
+    },
+    "contentType": {
+     "value": "application/json"
+    }
+   }
+  },
+  {
+   "id": "5b82a1a8-0276-45a3-ac42-85ace7294759",
+   "ui": {
+    "inputs": [
+     "input"
+    ],
+    "outputs": [
+     "msg"
+    ]
+   },
+   "pos": {
+    "h": 90,
+    "w": 90,
+    "x": 1240,
+    "y": 191
+   },
+   "desc": "Muestra el valor en consola",
+   "icon": "󱀄",
+   "type": "input_output/console",
+   "title": "Console",
+   "connect": [
+    {
+     "id": "24c0bb43-28d3-4457-ad43-8d6a9b816a9b",
+     "input": "input",
+     "output": "msg"
+    }
+   ],
+   "properties": {
+    "msg": {
+     "value": "{{input.data.value.title}}"
+    }
+   }
+  },
+  {
+   "id": "24c0bb43-28d3-4457-ad43-8d6a9b816a9b",
+   "ui": {
+    "inputs": [
+     "input"
+    ],
+    "outputs": [
+     "response"
+    ]
+   },
+   "pos": {
+    "h": 90,
+    "w": 90,
+    "x": 1418,
+    "y": 191
+   },
+   "desc": "Show value inside the console",
+   "icon": "󱫞",
+   "type": "timer/delay",
+   "color": "#95A5A6",
+   "title": "Delay",
+   "connect": [
+    {
+     "id": "7a85fab2-fa3d-4124-bac0-a77b6c3902c6",
+     "input": "next",
+     "output": "response"
+    }
+   ],
+   "properties": {
+    "delay": {
+     "value": 2
+    }
+   }
+  },
+  {
+   "id": "a9599680-5980-4621-8dbe-2f30a4501ada",
+   "ui": {
+    "inputs": [
+     "input"
+    ],
+    "outputs": [
+     "response",
+     "error"
+    ]
+   },
+   "pos": {
+    "h": 90,
+    "w": 90,
+    "x": 723,
+    "y": 352
+   },
+   "desc": "Permite enlazar un flujo existente",
+   "icon": "󱘖",
+   "type": "input_output/subFlow",
+   "color": "#F39C12",
+   "title": "Sub Flujo",
+   "connect": [],
+   "isTrigger": true,
+   "properties": {
+    "data": {
+     "value": "{\n    \"endpoint\": \"/user12\"\n}"
+    },
+    "flow": {
+     "value": 23
+    },
+    "node": {
+     "value": "cc4691fd-c7ac-41a2-b7a3-f805bd0ad3a0"
+    },
+    "flowName": {
+     "value": "<a target='_blank' href=\"../flows/23\" ><span class=\"mdi mdi-link-variant\"></span>template/distelsaTemplate</a>"
+    }
+   },
+   "onCreateExist": true
+  }
+ ],
+ "groups": [],
+ "subFlows": [],
+ "properties": {
+  "id": 15,
+  "name": "testWorkers",
+  "owner": {
+   "id": 7,
+   "alias": "walteromarr@gmail.com"
+  },
+  "config": {
+   "logs": {
+    "logsError": true
+   },
+   "deploy": {
+    "dir": ""
+   },
+   "router": {
+    "base": ""
+   },
+   "advance": {
+    "iteration": 5,
+    "verifyIteration": true
+   }
+  },
+  "latest": true,
+  "privacy": {},
+  "version": 51,
+  "lastUser": {
+   "id": 1,
+   "alias": "admin"
+  },
+  "namespace": "test",
+  "description": "data",
+  "privacyInfo": {
+   "isAdmin": false,
+   "isOwner": false,
+   "existUser": false
+  }
+ }
+}

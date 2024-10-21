@@ -1,0 +1,252 @@
+{
+ "nodes": [
+  {
+   "id": "cc4691fd-c7ac-41a2-b7a3-f805bd0ad3a0",
+   "ui": {
+    "outputs": [
+     "init"
+    ]
+   },
+   "pos": {
+    "h": 90,
+    "w": 90,
+    "x": 194,
+    "y": 185
+   },
+   "desc": "Nodo que permite iniciar un flujo",
+   "icon": "󱈎",
+   "type": "triggers/init",
+   "color": "#3498DB",
+   "group": "Triggers",
+   "title": "Iniciador",
+   "connect": [
+    {
+     "id": "67fce934-28b7-4b5b-aafe-861e8bcb0be5",
+     "input": "input",
+     "output": "init"
+    }
+   ],
+   "properties": {
+    "schema": {
+     "value": "{\n    \"endpoint\": \"/\"\n}"
+    },
+    "typeExec": {
+     "value": "local"
+    },
+    "valueDefault": {
+     "value": "{\n    \"endpoint\": \"/test\"\n}"
+    }
+   },
+   "onCreateExist": false
+  },
+  {
+   "id": "67fce934-28b7-4b5b-aafe-861e8bcb0be5",
+   "ui": {
+    "inputs": [
+     "input"
+    ],
+    "outputs": [
+     "response",
+     "error"
+    ]
+   },
+   "pos": {
+    "h": 90,
+    "w": 90,
+    "x": 364,
+    "y": 185
+   },
+   "desc": "Call webhook",
+   "icon": "󰘯",
+   "type": "triggers/webhook",
+   "color": "#3498DB",
+   "group": "Triggers",
+   "title": "Webhook",
+   "connect": [
+    {
+     "id": "e589b7ff-a2aa-442d-966a-82e4c17f5317",
+     "input": "input",
+     "output": "response"
+    },
+    {
+     "id": "e589b7ff-a2aa-442d-966a-82e4c17f5317",
+     "input": "input",
+     "output": "error"
+    }
+   ],
+   "isTrigger": true,
+   "properties": {
+    "url": {
+     "value": "\n    <div class=\"grid \" style=\"grid-template-columns: repeat(6, minmax(0, 1fr)); \">\n      <div class=\"col-span-1\"><strong>Desarrollo:</strong></div>\n      <div style=\"grid-column:span 5 / span 1\">http://localhost:3000/horizon/flow_23/<b class=\"text-[#E67E22]\">endpoint</b></div>\n      <div style=\"grid-column:span 1 / span 1\"><strong>Producción:</strong></div>\n      <div style=\"grid-column:span 5 / span 5\">( HOST )/<b class=\"text-[#E67E22]\">endpoint</b></div>\n    </div>"
+    },
+    "type": {
+     "value": "get"
+    },
+    "timeout": {
+     "value": 50
+    },
+    "endpoint": {
+     "value": "{{Iniciador.data.endpoint}}"
+    },
+    "security": {
+     "value": "null"
+    },
+    "securityBasicPass": {
+     "value": ""
+    },
+    "securityBasicUser": {
+     "value": ""
+    },
+    "securityJWTSecret": {
+     "value": ""
+    },
+    "securityBearerToken": {
+     "value": ""
+    }
+   },
+   "onCreateExist": true
+  },
+  {
+   "id": "e589b7ff-a2aa-442d-966a-82e4c17f5317",
+   "ui": {
+    "inputs": [
+     "input"
+    ],
+    "outputs": [
+     "response",
+     "error"
+    ]
+   },
+   "pos": {
+    "h": 90,
+    "w": 90,
+    "x": 555,
+    "y": 185
+   },
+   "desc": "Devuelve la respuesta de una llamada webhook",
+   "icon": "󰌑",
+   "type": "input_output/response",
+   "color": "#F39C12",
+   "title": "Response",
+   "connect": [],
+   "properties": {
+    "header": {
+     "value": "{\n}"
+    },
+    "isFile": {
+     "value": false
+    },
+    "status": {
+     "value": 200
+    },
+    "nameFile": {
+     "value": ""
+    },
+    "response": {
+     "value": "{\n    \"msg\":\"result\"\n}"
+    },
+    "contentType": {
+     "value": "application/json"
+    }
+   },
+   "onCreateExist": true
+  },
+  {
+   "id": "b3b38dd7-5354-4b37-b3b9-05143e12e9ec",
+   "ui": {
+    "inputs": [
+     "input"
+    ],
+    "outputs": [
+     "condición_1",
+     "condición_2",
+     "condición_3",
+     "condición_4",
+     "else",
+     "error"
+    ]
+   },
+   "pos": {
+    "h": 140,
+    "w": 90,
+    "x": 275,
+    "y": 385
+   },
+   "desc": "Permite realizar una validación de datos de entrada",
+   "icon": "󱡷",
+   "type": "processing/conditional",
+   "color": "#F39C12",
+   "group": "Procesamiento",
+   "title": "Condicional",
+   "connect": [],
+   "properties": {
+    "options": {
+     "type": "list",
+     "label": "Condicionales:",
+     "value": [
+      {
+       "where": {
+        "value": "test de datos"
+       }
+      },
+      {
+       "where": {
+        "value": "abc == 1"
+       }
+      },
+      {
+       "where": {
+        "value": "{{test de datos}}"
+       }
+      },
+      {
+       "where": {
+        "value": "fasdf"
+       }
+      }
+     ]
+    }
+   },
+   "onCreateExist": true
+  }
+ ],
+ "groups": [],
+ "subFlows": [],
+ "properties": {
+  "id": 23,
+  "name": "distelsaTemplate",
+  "owner": {
+   "id": 1,
+   "alias": "admin"
+  },
+  "config": {
+   "logs": {
+    "logsError": true
+   },
+   "deploy": {
+    "dir": ""
+   },
+   "router": {
+    "base": ""
+   },
+   "advance": {
+    "iteration": 5,
+    "verifyIteration": true
+   }
+  },
+  "latest": true,
+  "privacy": {},
+  "version": 9,
+  "lastUser": {
+   "id": 1,
+   "alias": "admin"
+  },
+  "namespace": "template",
+  "description": "",
+  "privacyInfo": {
+   "isAdmin": false,
+   "isOwner": false,
+   "existUser": false
+  }
+ }
+}
